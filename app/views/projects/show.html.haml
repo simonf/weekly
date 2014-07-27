@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Code:
+  = @project.code
+%p
+  %b Name:
+  = @project.name
+%p
+  %b Start:
+  = @project.start
+%p
+  %b End:
+  = @project.end
+%p
+  %b Stage:
+  = @project.stage
+%p
+  %b Active:
+  = @project.active
+
+= link_to 'Edit', edit_project_path(@project)
+\|
+= link_to 'Back', projects_path

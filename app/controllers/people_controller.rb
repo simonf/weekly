@@ -71,6 +71,6 @@ class PeopleController < ApplicationController
     def person_params
     #SF: amended because it's not really that scary
       #params[:person]
-      params.required(:person).permit(@allowed, :elements, :of, :person)
+      params.require(:person).permit(:name)
     end
 end

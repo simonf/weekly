@@ -5,6 +5,8 @@
       %ul
         - @person.errors.full_messages.each do |msg|
           %li= msg
-
+  %p
+    = f.label :name, :caption => "Name: ", :class => 'person_label'
+    = f.text_field :name, :class => 'person_text'
   .actions
     = f.submit 'Save'
