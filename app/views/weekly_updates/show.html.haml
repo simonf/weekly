@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Project:
+  = @weekly_update.project
+%p
+  %b Person:
+  = @weekly_update.person
+%p
+  %b Weekstart:
+  = @weekly_update.weekstart
+%p
+  %b Rag:
+  = @weekly_update.rag
+%p
+  %b Percent:
+  = @weekly_update.percent
+%p
+  %b Comment:
+  = @weekly_update.comment
+
+= link_to 'Edit', edit_weekly_update_path(@weekly_update)
+\|
+= link_to 'Back', weekly_updates_path

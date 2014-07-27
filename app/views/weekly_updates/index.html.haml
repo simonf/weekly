@@ -1,0 +1,29 @@
+%h1 Listing weekly_updates
+
+%table
+  %tr
+    %th Project
+    %th Person
+    %th Weekstart
+    %th Rag
+    %th Percent
+    %th Comment
+    %th
+    %th
+    %th
+
+  - @weekly_updates.each do |weekly_update|
+    %tr
+      %td= weekly_update.project
+      %td= weekly_update.person
+      %td= weekly_update.weekstart
+      %td= weekly_update.rag
+      %td= weekly_update.percent
+      %td= weekly_update.comment
+      %td= link_to 'Show', weekly_update
+      %td= link_to 'Edit', edit_weekly_update_path(weekly_update)
+      %td= link_to 'Destroy', weekly_update, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Weekly update', new_weekly_update_path

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :weekly_updates
+
   resources :projects
 
   resources :people

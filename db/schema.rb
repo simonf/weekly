@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726214200) do
+ActiveRecord::Schema.define(version: 20140727153815) do
 
   create_table "people", force: true do |t|
     t.string   "name"
@@ -29,5 +29,19 @@ ActiveRecord::Schema.define(version: 20140726214200) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "weekly_updates", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "person_id"
+    t.date     "weekstart"
+    t.string   "rag"
+    t.integer  "percent"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weekly_updates", ["person_id"], name: "index_weekly_updates_on_person_id"
+  add_index "weekly_updates", ["project_id"], name: "index_weekly_updates_on_project_id"
 
 end
