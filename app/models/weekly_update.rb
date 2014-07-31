@@ -12,4 +12,9 @@ class WeeklyUpdate < ActiveRecord::Base
         self.weekstart = Date.parse("Monday")-7
     end
   end
+
+  def for_person(p)
+    WeeklyUpdate.find(:where => person_id = p.id)
+  end
+
 end
