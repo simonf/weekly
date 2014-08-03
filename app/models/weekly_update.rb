@@ -3,7 +3,7 @@ class WeeklyUpdate < ActiveRecord::Base
   belongs_to :person
   validates :project, :presence => true
   validates :person, :presence => true
-  validates :rag, :inclusion => %w(Red,Amber,Green)
+  validates :rag, :inclusion => %w(Red Amber Green)
   validates :weekstart, :presence => true
 
   after_initialize do
