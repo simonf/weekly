@@ -1,0 +1,35 @@
+%h1
+  Listing weekly_updates for
+  %span.person= @person.name
+
+%table
+  %tr
+    %th Project
+    %th Weekstart
+    %th Rag
+    %th Percent
+    %th Comment
+    %th
+
+  - @updates.each do |project,weeklies|
+    %tr
+      %td= project.name
+      %td
+      %td
+      %td
+      %td
+      %td
+      %td
+    - weeklies.each do |wu|
+      %tr
+        %td
+        %td= wu.person.name
+        %td= wu.weekstart
+        %td= wu.rag
+        %td= wu.percent
+        %td= wu.comment
+        %td
+
+%br
+
+= link_to 'New Weekly update', new_weekly_update_path
