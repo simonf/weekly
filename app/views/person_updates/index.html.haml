@@ -1,20 +1,19 @@
 %h1
-  Listing weekly_updates for
+  Weekly updates for
   %span.person= @person.name
 
 %table
   %tr
     %th Project
+    %th Person
     %th Weekstart
     %th Rag
     %th Percent
     %th Comment
-    %th
-
+ 
   - @updates.each do |project,weeklies|
     %tr
       %td= project.name
-      %td
       %td
       %td
       %td
@@ -28,7 +27,6 @@
         %td= wu.rag
         %td= wu.percent
         %td= wu.comment
-        %td
 
 %br
 

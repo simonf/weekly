@@ -1,0 +1,28 @@
+!!!!!
+%html
+  %head
+    %title
+      Weekly Updates
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .header
+      %h1
+        Weekly Reports
+    .content
+      %nav
+        %h2
+          Menu
+        %ul
+          %li
+            = link_to 'Login', '/login'
+          %li
+            = link_to 'People', people_path
+          %li
+            = link_to 'Projects', projects_path
+      .main
+        = yield
+    .footer
+      %br
+      &copy; SimonF 2014
