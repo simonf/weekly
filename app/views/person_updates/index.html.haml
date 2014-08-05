@@ -10,24 +10,23 @@
     %th Rag
     %th Percent
     %th Comment
+    %th
  
   - @updates.each do |project,weeklies|
+    - wu = weeklies.first
     %tr
       %td= project.name
+      %td= wu.person.name
+      %td= wu.weekstart
+      %td= wu.rag
+      %td= wu.percent
+      %td= wu.comment
       %td
-      %td
-      %td
-      %td
-      %td
-    - weeklies.each do |wu|
-      %tr
-        %td
-        %td= wu.person.name
-        %td= wu.weekstart
-        %td= wu.rag
-        %td= wu.percent
-        %td= wu.comment
+        - if wu.is_current_week?
+          = link_to 'Edit', edit_weekly_update_path(wu)
+        - else
+          = link_to 'New', new_update_path(wu.project, wu.person)
 
 %br
 
-= link_to 'New Weekly update', new_weekly_update_path
+= link_to 'Add a new project'

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resources :people
 
-  get 'weekly/:id' => 'person_updates#index'
+  get 'weekly/:id' => 'person_updates#index', as: :weekly
+  get 'weekly/new/:person/:project' => 'person_updates#new', as: :new_update 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

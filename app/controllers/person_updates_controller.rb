@@ -6,6 +6,15 @@ class PersonUpdatesController < ApplicationController
     @updates = @person.weekly_updates_by_project(:all)
   end
 
+  def new
+    person = Person.find(params[:person])
+    project = Project.find(params[:project])
+    latest = project.latest_update
+    wu = WeeklyUpdate.new(:person => person, :project => project, :rag => latest.rag, :percent => latest.percent, :comment => latest.comment)
+    wu.save
+    redirect_to weekly_path(person)
+  end
+    
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
