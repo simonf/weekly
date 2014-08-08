@@ -20,11 +20,27 @@ require 'rails_helper'
 
 RSpec.describe WeeklyUpdatesController, :type => :controller do
 
+  before(:all) do
+    @person = Person.new(:name => 'Test')
+    @project = Project.new(:name => 'Test')
+    @person.save!
+    @project.save!
+  end
+
+  after(:all) do
+    Person.delete_all
+    Project.delete_all
+  end
+
+
   # This should return the minimal set of attributes required to create a valid
   # WeeklyUpdate. As you add validations to WeeklyUpdate, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      :person => @person,
+      :project => @project
+    }
   }
 
   let(:invalid_attributes) {
@@ -64,6 +80,12 @@ RSpec.describe WeeklyUpdatesController, :type => :controller do
       weekly_update = WeeklyUpdate.create! valid_attributes
       get :edit, {:id => weekly_update.to_param}, valid_session
       expect(assigns(:weekly_update)).to eq(weekly_update)
+    end
+  end
+
+  describe "Accepts strong parameters" do
+    it "accepts a hash of project and person objects" do
+      expect controller.weekly_update_params(valid_attributes).to be(valid_attributes)
     end
   end
 

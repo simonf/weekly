@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Person, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:name) { "Test" }
+
+  describe "Creates ok" do
+    it "should save a new Person" do
+    end
+  end
 end

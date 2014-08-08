@@ -61,7 +61,7 @@ class WeeklyUpdatesController < ApplicationController
     end
   end
 
-  private
+#  private
     # Use callbacks to share common setup or constraints between actions.
     def set_weekly_update
       @weekly_update = WeeklyUpdate.find(params[:id])
