@@ -8,10 +8,10 @@
 
   .field
     = f.label :project
-    = f.text_field :project
+    = f.label @weekly_update.project.name
   .field
     = f.label :person
-    = f.text_field :person
+    = f.label @weekly_update.person.name
   .field
     = f.label :weekstart
     = f.date_select :weekstart

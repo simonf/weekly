@@ -43,8 +43,15 @@ RSpec.describe WeeklyUpdatesController, :type => :controller do
     }
   }
 
+  let(:wu) {
+      {
+          :person_id => @person.id,
+          :project_id => @project.id
+      }
+  }
+
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {:rag => "Blue"}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -83,28 +90,22 @@ RSpec.describe WeeklyUpdatesController, :type => :controller do
     end
   end
 
-  describe "Accepts strong parameters" do
-    it "accepts a hash of project and person objects" do
-      expect controller.weekly_update_params(valid_attributes).to be(valid_attributes)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new WeeklyUpdate" do
         expect {
-          post :create, {:weekly_update => valid_attributes}, valid_session
+          post :create, {:weekly_update => wu}, valid_session
         }.to change(WeeklyUpdate, :count).by(1)
       end
 
       it "assigns a newly created weekly_update as @weekly_update" do
-        post :create, {:weekly_update => valid_attributes}, valid_session
+        post :create, {:weekly_update => wu}, valid_session
         expect(assigns(:weekly_update)).to be_a(WeeklyUpdate)
         expect(assigns(:weekly_update)).to be_persisted
       end
 
       it "redirects to the created weekly_update" do
-        post :create, {:weekly_update => valid_attributes}, valid_session
+        post :create, {:weekly_update => wu}, valid_session
         expect(response).to redirect_to(WeeklyUpdate.last)
       end
     end
@@ -125,25 +126,25 @@ RSpec.describe WeeklyUpdatesController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {:rag => "Amber"}
       }
 
       it "updates the requested weekly_update" do
         weekly_update = WeeklyUpdate.create! valid_attributes
         put :update, {:id => weekly_update.to_param, :weekly_update => new_attributes}, valid_session
         weekly_update.reload
-        skip("Add assertions for updated state")
+        expect(weekly_update.rag).to eq(new_attributes[:rag])
       end
 
       it "assigns the requested weekly_update as @weekly_update" do
         weekly_update = WeeklyUpdate.create! valid_attributes
-        put :update, {:id => weekly_update.to_param, :weekly_update => valid_attributes}, valid_session
+        put :update, {:id => weekly_update.to_param, :weekly_update => wu}, valid_session
         expect(assigns(:weekly_update)).to eq(weekly_update)
       end
 
       it "redirects to the weekly_update" do
         weekly_update = WeeklyUpdate.create! valid_attributes
-        put :update, {:id => weekly_update.to_param, :weekly_update => valid_attributes}, valid_session
+        put :update, {:id => weekly_update.to_param, :weekly_update => wu}, valid_session
         expect(response).to redirect_to(weekly_update)
       end
     end

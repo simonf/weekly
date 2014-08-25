@@ -1,6 +1,8 @@
 %p#notice= notice
 
+.name= @person.name
 
+= link_to 'Projects', weekly_path(@person)
 = link_to 'Edit', edit_person_path(@person)
 \|
 = link_to 'Back', people_path

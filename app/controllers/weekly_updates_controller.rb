@@ -21,28 +21,28 @@ class WeeklyUpdatesController < ApplicationController
   def edit
   end
 
-  # POST /weekly_updates
-  # POST /weekly_updates.json
-  def create
-    @weekly_update = WeeklyUpdate.new(weekly_update_params)
-
-    respond_to do |format|
-      if @weekly_update.save
-        format.html { redirect_to @weekly_update, notice: 'Weekly update was successfully created.' }
-        format.json { render :show, status: :created, location: @weekly_update }
-      else
-        format.html { render :new }
-        format.json { render json: @weekly_update.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # # POST /weekly_updates
+  # # POST /weekly_updates.json
+  # def create
+  #   @weekly_update = WeeklyUpdate.new(weekly_update_params)
+  #
+  #   respond_to do |format|
+  #     if @weekly_update.save
+  #       format.html { redirect_to @weekly_update, notice: 'Weekly update was successfully created.' }
+  #       format.json { render :show, status: :created, location: @weekly_update }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @weekly_update.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PATCH/PUT /weekly_updates/1
   # PATCH/PUT /weekly_updates/1.json
   def update
     respond_to do |format|
       if @weekly_update.update(weekly_update_params)
-        format.html { redirect_to @weekly_update, notice: 'Weekly update was successfully updated.' }
+        format.html { redirect_to weekly_url(@weekly_update.person), notice: 'Weekly update was successfully updated.' }
         format.json { render :show, status: :ok, location: @weekly_update }
       else
         format.html { render :edit }
@@ -69,6 +69,7 @@ class WeeklyUpdatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def weekly_update_params
-      params.require(:weekly_update).permit(:project_id, :person_id, :weekstart, :rag, :percent, :comment)
+      #params.require(:weekly_update).permit(:project_id, :person_id, :weekstart, :rag, :percent, :comment)
+      params.require(:weekly_update).permit! #(:project, :person, :weekstart, :rag, :percent, :comment)
     end
 end

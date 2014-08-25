@@ -1,0 +1,24 @@
+= form_for @person_update do |f|
+  - if @person_update.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@person_update.errors.count, "error")} prohibited this update from being saved:"
+      %ul
+        - @person_update.errors.full_messages.each do |msg|
+          %li= msg
+  %p
+    = f.label :project, :caption => "Project: ", :class => 'update_label'
+    = f.select :project, options_from_collection_for_select(@projects, 'id', 'name')
+  %p
+    = f.label :weekstart, :caption => "Week: ", :class => 'update_label'
+    = f.text :weekstart, :class => 'update_field'
+  %p
+    = f.label :rag, :caption => "Status", :class => 'update_label'
+    = f.select :rag, options_for_select([['Red','Red'],['Amber','Amber'],['Green','Green']])
+  %p
+    = f.label :percent, :caption => "Percent: ", :class => 'update_label'
+    = f.text :percent, :class => 'update_field'
+  %p
+    = f.label :comment, :caption => "Comment: ", :class => 'update_label'
+    = f.text :comment, :class => 'update_field'
+  .actions
+    = f.submit 'Save'
